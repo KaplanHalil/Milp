@@ -1,6 +1,6 @@
 import time
 import math
-@parallel(ncpus=4)  # Use 4 CPUs
+
 
 a= time.time()
 p.<R0, R1, R1a, R1b, R1c, R2, R2a, R2b, R2c, R3, prob> = MixedIntegerLinearProgram (maximization=True, solver = "GLPK")
