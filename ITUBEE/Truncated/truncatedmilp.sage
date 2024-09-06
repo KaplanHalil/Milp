@@ -1,7 +1,6 @@
 import time
 import math
 
-
 a= time.time()
 p.<R0, R1, R1a, R1b, R1c, R2, R2a, R2b, R2c, R3, prob> = MixedIntegerLinearProgram (maximization=True, solver = "GLPK")
 # Her bir çevrimdeki aktiflik
