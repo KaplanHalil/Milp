@@ -343,7 +343,7 @@ p.set_objective (p.sum ([ta[i] for i in range(len(ta))]))
 
 #p.show()
 
-p.write_mps("deneme.mps")
+p.write_lp("deneme.lp")
 
 print ("Toplam aktif s-kutusu: ",p.solve())
 

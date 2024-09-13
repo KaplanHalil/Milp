@@ -3,10 +3,10 @@ import numpy as np
 h = highspy.Highs()
 
 
-filename = 'deneme.mps'
+filename = 'deneme.lp'
 status = h.readModel(filename)
 status = h.setOptionValue('parallel', 'on')
-#status = h.setOptionValue('threads', 15)
+status = h.setOptionValue('threads', 25)
 print('Reading model file ', filename, ' returns a status of ', status)
 
 h.run()

@@ -284,4 +284,4 @@ print ("R4-R3      ",p.get_values (R4),p.get_values (R3))
 
 b=time.time()
 
-print("\n Süre: ",(b-a)/60)
+print("\n Süre: ",(b-a))
