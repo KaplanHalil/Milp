@@ -7,7 +7,7 @@ _sage_const_0 = Integer(0); _sage_const_1 = Integer(1); _sage_const_2 = Integer(
 import time
 
 a= time.time()
-p = MixedIntegerLinearProgram (maximization=False, solver = "GLPK", names=('KL', 'KR', 'R0', 'R1', 'R2', 'R3', 'R3a', 'R3b', 'R3c', 'R3d', 'R4', 'R4a', 'R4b', 'R4c', 'R4d', 'R5', 'R5a', 'R5b', 'R5c', 'R5d', 'R6', 'R6a', 'R6b', 'R6c', 'R6d', 'R7', 'R7a', 'R7b', 'R7c', 'R7d', 'R8', 'R8a', 'R8b', 'R8c', 'R8d', 'R9', 'R9a', 'R9b', 'R9c', 'R9d', 'R10', 'R10a', 'R10b', 'R10c', 'R10d', 'R11', 'd',)); (KL, KR, R0, R1, R2, R3, R3a, R3b, R3c, R3d, R4, R4a, R4b, R4c, R4d, R5, R5a, R5b, R5c, R5d, R6, R6a, R6b, R6c, R6d, R7, R7a, R7b, R7c, R7d, R8, R8a, R8b, R8c, R8d, R9, R9a, R9b, R9c, R9d, R10, R10a, R10b, R10c, R10d, R11, d,) = p._first_ngens(47)
+p = MixedIntegerLinearProgram (maximization=False, solver = "CVXOPT", names=('KL', 'KR', 'R0', 'R1', 'R2', 'R3', 'R3a', 'R3b', 'R3c', 'R3d', 'R4', 'R4a', 'R4b', 'R4c', 'R4d', 'R5', 'R5a', 'R5b', 'R5c', 'R5d', 'R6', 'R6a', 'R6b', 'R6c', 'R6d', 'R7', 'R7a', 'R7b', 'R7c', 'R7d', 'R8', 'R8a', 'R8b', 'R8c', 'R8d', 'R9', 'R9a', 'R9b', 'R9c', 'R9d', 'R10', 'R10a', 'R10b', 'R10c', 'R10d', 'R11', 'd',)); (KL, KR, R0, R1, R2, R3, R3a, R3b, R3c, R3d, R4, R4a, R4b, R4c, R4d, R5, R5a, R5b, R5c, R5d, R6, R6a, R6b, R6c, R6d, R7, R7a, R7b, R7c, R7d, R8, R8a, R8b, R8c, R8d, R9, R9a, R9b, R9c, R9d, R10, R10a, R10b, R10c, R10d, R11, d,) = p._first_ngens(47)
 # Her bir çevrimdeki aktiflik
 p.set_binary (KL)
 p.set_binary (KR)
