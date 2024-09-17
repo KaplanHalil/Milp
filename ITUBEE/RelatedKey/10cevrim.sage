@@ -1,7 +1,7 @@
 import time
 
 a= time.time()
-p.<KL, KR, R0, R1, R2, R3, R3a, R3b, R3c, R3d, R4, R4a, R4b, R4c, R4d, R5, R5a, R5b, R5c, R5d, R6, R6a, R6b, R6c, R6d,R7, R7a, R7b, R7c, R7d,R8,R8a, R8b, R8c, R8d,R9, R9a, R9b, R9c, R9d,R10, R10a, R10b, R10c, R10d, R11, d> = MixedIntegerLinearProgram (maximization=False, solver = "CVXOPT")
+p.<KL, KR, R0, R1, R2, R3, R3a, R3b, R3c, R3d, R4, R4a, R4b, R4c, R4d, R5, R5a, R5b, R5c, R5d, R6, R6a, R6b, R6c, R6d,R7, R7a, R7b, R7c, R7d,R8,R8a, R8b, R8c, R8d,R9, R9a, R9b, R9c, R9d,R10, R10a, R10b, R10c, R10d, R11, R11a, R11b, R11c, R11d, R12, R12a, R12b, R12c, R12d, R13, d> = MixedIntegerLinearProgram (maximization=False, solver = "GLPK")
 # Her bir çevrimdeki aktiflik
 p.set_binary (KL)
 p.set_binary (KR)
@@ -58,6 +58,18 @@ p.set_binary (R10c)
 p.set_binary (R10d)
 
 p.set_binary (R11)
+p.set_binary (R11a)
+p.set_binary (R11b)
+p.set_binary (R11c)
+p.set_binary (R11d)
+
+p.set_binary (R12)
+p.set_binary (R12a)
+p.set_binary (R12b)
+p.set_binary (R12c)
+p.set_binary (R12d)
+
+p.set_binary (R13)
 
 p.set_binary (d)
 pp = Polyhedron(vertices=[
@@ -296,6 +308,8 @@ cevrim(p,[d[i] for i in range(50,60)],KR,R6,R7,R7a,R7b,R7c,R7d,R8)
 cevrim(p,[d[i] for i in range(60,70)],KL,R7,R8,R8a,R8b,R8c,R8d,R9)
 cevrim(p,[d[i] for i in range(70,80)],KR,R8,R9,R9a,R9b,R9c,R9d,R10)
 cevrim(p,[d[i] for i in range(80,90)],KL,R9,R10,R10a,R10b,R10c,R10d,R11)
+cevrim(p,[d[i] for i in range(90,100)],KR,R10,R11,R11a,R11b,R11c,R11d,R12)
+cevrim(p,[d[i] for i in range(100,110)],KL,R11,R12,R12a,R12b,R12c,R12d,R13)
 
 #Toplam aktif. b anahtar xor olduğu için yok.
 ta=[]
@@ -339,6 +353,16 @@ ta.append(p.sum (R10a[i] for i in range (5)))
 ta.append(p.sum (R10c[i] for i in range (5)))
 ta.append(p.sum (R10d[i] for i in range (5)))
 
+ta.append(p.sum (R11[i] for i in range (5))) 
+ta.append(p.sum (R11a[i] for i in range (5)))
+ta.append(p.sum (R11c[i] for i in range (5)))
+ta.append(p.sum (R11d[i] for i in range (5)))
+
+ta.append(p.sum (R12[i] for i in range (5))) 
+ta.append(p.sum (R12a[i] for i in range (5)))
+ta.append(p.sum (R12c[i] for i in range (5)))
+ta.append(p.sum (R12d[i] for i in range (5)))
+
 p.set_objective (p.sum ([ta[i] for i in range(len(ta))]))
 
 #p.show()
@@ -347,43 +371,6 @@ p.set_objective (p.sum ([ta[i] for i in range(len(ta))]))
 
 print ("Toplam aktif s-kutusu: ",p.solve())
 
-print ("KL-KR              ",p.get_values (KL),p.get_values (KR))
-print("")
-print ("R1-R0              ",p.get_values (R1),p.get_values (R0))
-print("")
-print ("R3-R2              ",p.get_values (R3),p.get_values (R2))
-print("")
-print ("R3a-R3b-R3c-R3d    ",p.get_values (R3a),p.get_values (R3b),p.get_values (R3c),p.get_values (R3d))
-print("")
-print ("R4-R3              ",p.get_values (R4),p.get_values (R3))
-print("")
-print ("R4a-R4b-R4c-R4d    ",p.get_values (R4a),p.get_values (R4b),p.get_values (R4c),p.get_values (R4d))
-print("")
-print ("R5-R4              ",p.get_values (R5),p.get_values (R4))
-print("")
-print ("R5a-R5b-R5c-R5d    ",p.get_values (R5a),p.get_values (R5b),p.get_values (R5c),p.get_values (R5d))
-print("")
-print ("R6-R5              ",p.get_values (R6),p.get_values (R5))
-print("")
-print ("R6a-R6b-R6c-R6d    ",p.get_values (R6a),p.get_values (R6b),p.get_values (R6c),p.get_values (R6d))
-print("")
-print ("R7-R6              ",p.get_values (R7),p.get_values (R6))
-print("")
-print ("R7a-R7b-R7c-R7d    ",p.get_values (R7a),p.get_values (R7b),p.get_values (R7c),p.get_values (R7d))
-print("")
-print ("R8-R7              ",p.get_values (R8),p.get_values (R7))
-print("")
-print ("R8a-R8b-R8c-R8d    ",p.get_values (R8a),p.get_values (R8b),p.get_values (R8c),p.get_values (R8d))
-print("")
-print ("R9-R8              ",p.get_values (R9),p.get_values (R8))
-print("")
-print ("R9a-R9b-R9c-R9d    ",p.get_values (R9a),p.get_values (R9b),p.get_values (R9c),p.get_values (R9d))
-print("")
-print ("R10-R9             ",p.get_values (R10),p.get_values (R9))
-print("")
-print ("R10a-R10b-R10c-R10d",p.get_values (R10a),p.get_values (R10b),p.get_values (R10c),p.get_values (R10d))
-print("")
-print ("R11-R10            ",p.get_values (R11),p.get_values (R10))
 b=time.time()
 
-print("\n Süre: ",(b-a)/60)
+print("\n Süre: ",(b-a))
