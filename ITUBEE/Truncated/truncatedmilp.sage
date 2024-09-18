@@ -266,6 +266,7 @@ p.set_objective (p.sum ([r1, r2]))
 
 #p.show()
 
+p.write_lp("truncated.lp")
 
 
 print ("Min olasilik: ",p.solve())

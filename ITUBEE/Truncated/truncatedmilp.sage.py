@@ -7,7 +7,6 @@ _sage_const_0 = Integer(0); _sage_const_0p0 = RealNumber('0.0'); _sage_const_1 =
 import time
 import math
 
-
 a= time.time()
 p = MixedIntegerLinearProgram (maximization=True, solver = "GLPK", names=('R0', 'R1', 'R1a', 'R1b', 'R1c', 'R2', 'R2a', 'R2b', 'R2c', 'R3', 'prob',)); (R0, R1, R1a, R1b, R1c, R2, R2a, R2b, R2c, R3, prob,) = p._first_ngens(11)
 # Her bir çevrimdeki aktiflik
@@ -273,6 +272,7 @@ p.set_objective (p.sum ([r1, r2]))
 
 #p.show()
 
+p.write_lp("truncated.lp")
 
 
 print ("Min olasilik: ",p.solve())
