@@ -374,4 +374,6 @@ p.set_objective (p.sum ([ta[i] for i in range(len(ta))]))
 #p.show()
 
 p.write_lp("problem.lp")
+print(p.number_of_constraints())
+print(p.number_of_variables())
 

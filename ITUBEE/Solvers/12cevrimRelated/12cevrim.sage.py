@@ -397,7 +397,10 @@ p.set_objective (p.sum ([ta[i] for i in range(len(ta))]))
 
 #p.write_lp("problem.lp")
 
-print ("Toplam aktif s-kutusu: ",p.solve())
+#print ("Toplam aktif s-kutusu: ",p.solve())
+
+print(p.number_of_constraints())
+print(p.number_of_variables())
 
 b=time.time()
 
