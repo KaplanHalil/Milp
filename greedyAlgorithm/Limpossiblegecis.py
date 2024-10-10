@@ -64,4 +64,4 @@ if __name__ == "__main__":
                 a=a+1
 
         if a == 0 :
-            print (olasilik0)
+            print (olasilik0,",")
