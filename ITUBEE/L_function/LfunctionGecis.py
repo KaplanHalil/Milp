@@ -46,7 +46,5 @@ if __name__ == "__main__":
 
 
 
-    print(sonuc)
     for h in sonuc:
-        #print("[",h,"],")
-        print(h)
+        print("[",h,"],")
