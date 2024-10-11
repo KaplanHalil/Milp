@@ -1,5 +1,23 @@
+def copy_2d_array(original_array):
+    """
+    Copies elements from a 2D array to a new array.
 
-def reduction_algorithm(H, X):
+    Args:
+        original_array (list of lists): The original 2D array.
+
+    Returns:
+        list of lists: A new 2D array with the same elements.
+    """
+    copied_array = []  # Initialize an empty list for the copied array
+
+    for row in original_array:
+        # Create a new row (list) with the same elements as the original row
+        copied_row = list(row)
+        copied_array.append(copied_row)
+
+    return copied_array
+
+def greedy_algorithm(H, X):
     """
     Greedy Algorithm
 
@@ -16,25 +34,20 @@ def reduction_algorithm(H, X):
 
     while X:  # While X is not empty
 
-        max_removed = 0
-        selected_inequality = []
-
         # Her bir ineq. için kaç impossible'ı sağlamadığının countı.
         count={}
 
         for ineq in H:
-            count
-
-        for ineq in H:
             for impos in X:
-                if (ineq[0]*impos[0]+ineq[1]*impos[1]+ineq[2]*impos[2]+ineq[3]*impos[3]+ineq[4]*impos[4]+ineq[5]*impos[5]+ineq[6]*impos[6]+ineq[7]*impos[7]+ineq[8]*impos[8]+impos[9]*ineq[9]+ineq[10])<=0 :
+                if (ineq[0]*impos[0]+ineq[1]*impos[1]+ineq[2]*impos[2]+ineq[3]*impos[3]+ineq[4]*impos[4]+ineq[5]*impos[5]+ineq[6]*impos[6]+ineq[7]*impos[7]+ineq[8]*impos[8]+ineq[9]*impos[9]+ineq[10])<0 :
                     count.setdefault(str(ineq),0)
                     count[str(ineq)]+=1
 
-        #print (count)
+        #print (count,"\n")
 
         # En yüksek değerli eq bulunur.
         max_value=0
+        
         for i in count:
             if count[i]> max_value:
                 max_value=count[i]
@@ -42,15 +55,19 @@ def reduction_algorithm(H, X):
         # Eqn str formatındaydı tekrar list'e dönüştürdü
         max_eq0=list(count.keys())[list(count.values()).index(max_value)]
         max_eq= eval(max_eq0)
-        
-        O.append(max_eq)  # Add the selected inequality to O
-        H.remove(max_eq)  # Erase the inequality from H
 
         # Tekrar hangi imposibble noktaları elediği hesalanıp X listesinden siliniyor.
-        for impos in X:
-            if (max_eq[0]*impos[0]+max_eq[1]*impos[1]+max_eq[2]*impos[2]+max_eq[3]*impos[3]+max_eq[4]*impos[4]+max_eq[5]*impos[5]+max_eq[6]*impos[6]+max_eq[7]*impos[7]+max_eq[8]*impos[8]+max_eq[9]*impos[9]+max_eq[10])<=0 :
-                X.remove(impos)
         
+
+        # for X üzerinden döndüğü için azaltma Y üzerinden yapılıyor
+        Y=copy_2d_array(X)
+        for impos in X:
+            if (max_eq[0]*impos[0]+max_eq[1]*impos[1]+max_eq[2]*impos[2]+max_eq[3]*impos[3]+max_eq[4]*impos[4]+max_eq[5]*impos[5]+max_eq[6]*impos[6]+max_eq[7]*impos[7]+max_eq[8]*impos[8]+max_eq[9]*impos[9]+max_eq[10])<0 :
+                Y.remove(impos)
+        X=copy_2d_array(Y)
+
+        O.append(max_eq)  # Add the selected inequality to O
+        H.remove(max_eq)  # Erase the inequality from H
     return O
 
 
@@ -2938,7 +2955,8 @@ if __name__ == "__main__":
 ]
     
     
-    result = reduction_algorithm(H, X)
+    result = greedy_algorithm(H, X)
+    print("Number of inequalities: ", len(result))
     print("Selected inequalities (O):", result)
     
 
