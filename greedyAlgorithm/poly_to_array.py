@@ -2019,12 +2019,13 @@ An inequality (1, -1, 1, -2, 2, -2, -1, 2, 1, 3) x + 2 >= 0
 
 """
 
-# Use regular expression to extract the coefficients
-coefficients = re.findall(r'\((-?\d+, ?-?\d+, ?-?\d+, ?-?\d+, ?-?\d+, ?-?\d+, ?-?\d+, ?-?\d+, ?-?\d+, ?-?\d+)\)', text)
+# Use regular expression to extract the coefficients and constants
+pattern = re.compile(r'\((-?\d+, ?-?\d+, ?-?\d+, ?-?\d+, ?-?\d+, ?-?\d+, ?-?\d+, ?-?\d+, ?-?\d+, ?-?\d+)\) x \+ (-?\d+)')
+matches = pattern.findall(text)
 
-# Convert the coefficients to a list of lists (2D list)
-coeff_matrix = [list(map(int, coeff.strip().split(','))) for coeff in coefficients]
+# Convert the coefficients and constants to a list of lists (2D list)
+coeff_matrix = [list(map(int, coeff.strip().split(','))) + [int(constant)] for coeff, constant in matches]
 
-# Print the resulting coefficient matrix
+# Print the resulting coefficient matrix with constants
 for row in coeff_matrix:
     print(row,",")
