@@ -56,6 +56,8 @@ if __name__ == "__main__":
     # Convert dictionary keys to a 2D list
     gerceklesen_olasilik = [list(map(int, key.split(','))) for key in sonuc.keys()]
 
+
+    # tüm olasılıktan gerçekleşenleri çıkarıp impossible olanlarıelde eder
     for olasilik0 in tum_olasilik:
         a=0
         for olasilik1 in gerceklesen_olasilik:
