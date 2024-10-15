@@ -10,7 +10,7 @@ p.set_binary (z)
 def newReduction(N,R):
 
     for impos in R:
-        k=[] # impossible noktayı yok eden denklemler.
+        k=[] # impossible noktayı yok eden denklemlerin indislerinin listesi.
         i=0 # denklem indisleri
         for ineq in N:
             if (ineq[0]*impos[0]+ineq[1]*impos[1]+ineq[2]*impos[2]+ineq[3]*impos[3]+ineq[4]*impos[4]+ineq[5]*impos[5]+ineq[6]*impos[6]+ineq[7]*impos[7]+ineq[8]*impos[8]+ineq[9]*impos[9]+ineq[10])<0 :
@@ -2909,16 +2909,21 @@ R=[[0, 0, 0, 0, 0, 0, 0, 0, 0, 1] ,
     
 result = newReduction(N, R)
 
+# Reduction sonrası istenen denklem sayısı
+p.add_constraint(p.sum(z[i] for i in range(len(N)))>= 100)
+
 p.set_objective(p.sum(z[i] for i in range(len(N))))
-p.write_lp("deneme.txt")
-print(p.solve())
-#print(p.show())
-reduction=[] # Hangi denklemler olduğunu ayrı bir listeye alıyorum.
+
+print("Reduction'dan önce denklem sayisi : ", len(N))
+print("Reduction'dan sonra denklem sayisi: ",int(p.solve()))
+
+# Denklem indislerini ayrı bir listeye alınıyor..
+reduction=[] 
 for key, value in p.get_values(z).items():
     if 1 == value:
         reduction.append(key)
 
-
+# Ayrılan indisler kullanılarak denklemeler seçiliyor. 
 for i in reduction:
     print(N[i],",")
     
