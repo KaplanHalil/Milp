@@ -2910,7 +2910,7 @@ R=[[0, 0, 0, 0, 0, 0, 0, 0, 0, 1] ,
 result = newReduction(N, R)
 
 # Reduction sonrası istenen denklem sayısı
-p.add_constraint(p.sum(z[i] for i in range(len(N)))>= 100)
+p.add_constraint(p.sum(z[i] for i in range(len(N)))>= 1500)
 
 p.set_objective(p.sum(z[i] for i in range(len(N))))
 
