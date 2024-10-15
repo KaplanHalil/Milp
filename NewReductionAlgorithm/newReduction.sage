@@ -2913,11 +2913,14 @@ p.set_objective(p.sum(z[i] for i in range(len(N))))
 p.write_lp("deneme.txt")
 print(p.solve())
 #print(p.show())
+reduction=[] # Hangi denklemler olduğunu ayrı bir listeye alıyorum.
 for key, value in p.get_values(z).items():
     if 1 == value:
-        print (N(key))
+        reduction.append(key)
 
 
+for i in reduction:
+    print(N[i],",")
     
 
     
