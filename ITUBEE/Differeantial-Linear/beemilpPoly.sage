@@ -285,3 +285,6 @@ print ("R4-R3      ",p.get_values (R4),p.get_values (R3))
 b=time.time()
 
 print("\n Süre: ",(b-a))
+
+print("Number of Constrains: ",p.number_of_constraints())
+print("Number of Variables: ",p.number_of_variables())
