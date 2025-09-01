@@ -343,7 +343,8 @@ p.set_objective (p.sum ([ta[i] for i in range(len(ta))]))
 
 #p.show()
 
-
+print("Number of Constrains: ",p.number_of_constraints())
+print("Number of Variables: ",p.number_of_variables())
 
 print ("Toplam aktif s-kutusu: ",p.solve())
 
